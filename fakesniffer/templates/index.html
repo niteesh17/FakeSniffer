@@ -1,0 +1,88 @@
+{% extends "bootstrap/base.html" %}
+
+{% block content %}
+<div class="container-fluid vh-100 d-flex flex-column justify-content-center align-items-center background-animation">
+    <div class="jumbotron text-center" style="background-color:#00bcd4; padding: 60px; border-radius: 15px; box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4); width: 90%; max-width: 800px;">
+        <h2 class="text-white display-4">📰 FAKESNIFFER</h2>
+        <p class="text-white lead">Using Machine Learning to Detect Fake News</p>
+    </div>
+
+    <div class="card shadow-lg mt-4" style="width: 90%; max-width: 800px;">
+        <div class="card-header text-white text-center" style="background-color:#009688; font-size: 1.5rem; border-radius: 15px 15px 0 0;">
+            🏷️ Fake News Classifier
+        </div>
+        <div class="card-body">
+            <form action="{{ url_for('predict')}}" method="POST" class="text-center">
+                <div class="form-group mb-4">
+                    <input type="text" name="namequery" class="form-control form-control-lg" placeholder="Enter news statement..." required>
+                </div>
+                <button type="submit" class="btn btn-success btn-lg mt-3 px-5">🔍 Predict</button>
+            </form>
+        </div>
+    </div>
+
+    <footer class="text-center mt-4">
+        <p class="text-muted">© 2025 Fake News Classifier. All rights reserved.</p>
+    </footer>
+</div>
+{% endblock %}
+
+{% block styles %}
+{{ super() }} 
+<link rel="stylesheet" href="{{ url_for('.static', filename='css/styles.css') }}">
+<style>
+    body {
+        margin: 0;
+        font-family: 'Arial', sans-serif;
+        color: #f8f9fa;
+    }
+    .background-animation {
+        background: linear-gradient(270deg, rgba(15, 15, 15, 1), rgba(30, 30, 50, 1)); /* Bluish-black gradient */
+        background-size: 400% 400%;
+        animation: gradient-animation 15s ease infinite;
+    }
+    @keyframes gradient-animation {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+    }
+    .container-fluid {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh; /* Full viewport height */
+    }
+    .jumbotron {
+        border-radius: 15px;
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .jumbotron:hover {
+        transform: scale(1.05);
+        box-shadow: 0 8px 40px rgba(0, 0, 0, 0.5);
+    }
+    .card {
+        border-radius: 15px;
+        transition: transform 0.3s, box-shadow 0.3s;
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    .card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 12px 60px rgba(0, 0, 0, 0.4);
+    }
+    .btn-success {
+        background-color: #28a745;
+        border-color: #28a745;
+        transition: background-color 0.3s, transform 0.3s;
+    }
+    .btn-success:hover {
+        background-color: #218838;
+        border-color: #218838;
+        transform: scale(1.05);
+    }
+    footer {
+        margin-top: 30px;
+    }
+</style>
+{% endblock %}

@@ -1,0 +1,11 @@
+Flask
+Flask-Bootstrap
+pandas
+numpy
+sklearn
+nltk
+seaborn
+gensim
+scikit-optimize
+pyprojroot
+gensim

@@ -1,0 +1,70 @@
+{% extends "bootstrap/base.html" %}
+{% block content %}
+
+<div class="container mt-5">
+    <div class="jumbotron text-center" style="background: linear-gradient(45deg, #007bff, #00d4ff); padding: 30px; border-radius: 10px; box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);">
+        <h2 class="text-white">📰 Fake News Classifier App</h2>
+        <p class="text-white">Using Machine Learning to Detect Fake News</p>
+    </div>
+
+    <div class="card text-center shadow-lg mt-4" style="border-radius: 15px;">
+        <div class="card-header text-white" style="background: linear-gradient(45deg, #0056b3, #00a6ff); font-size: 1.5rem; border-radius: 15px 15px 0 0;">
+            ✅ Prediction Results
+        </div>
+        <div class="card-body" style="background-color: #f8f9fa; border-radius: 0 0 15px 15px;">
+            <h5 class="card-title text-primary">🔍 Fake News Classifier</h5>
+            <hr/>
+
+            <div class="alert alert-info" role="alert">
+                <strong>News Statement:</strong> {{ name }}
+            </div>
+
+            <!-- Main ML Prediction Display Here -->
+            {% if prediction == 0 %}
+                <div class="alert alert-danger" role="alert">
+                    ❌ This news is <strong>Fake</strong>
+                </div>
+                <a href="#" class="btn btn-danger px-4 py-2" style="border-radius: 5px; background: linear-gradient(45deg, #ff4b2b, #ff416c);">Learn More</a>
+            {% elif prediction == 1 %}
+                <div class="alert alert-success" role="alert">
+                    ✅ This news is <strong>Real</strong>
+                </div>
+                <a href="#" class="btn btn-primary px-4 py-2" style="border-radius: 5px; background: linear-gradient(45deg, #00c6ff, #0072ff);">View Details</a>
+            {% endif %}
+        </div>
+        <div class="card-footer text-muted" style="background-color: #e9ecef; border-radius: 0 0 15px 15px;">
+            Powered by Machine Learning
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block styles %}
+{{ super() }}
+<link rel="stylesheet" href="{{ url_for('.static', filename='css/styles.css') }}">
+<style>
+    /* Custom Styles for the Page */
+    body {
+        background-color: #050911; /* Dark background for contrast */
+    }
+    .jumbotron {
+        border-radius: 10px;
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .jumbotron:hover {
+        transform: scale(1.02);
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+    }
+    .card {
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 50px rgba(0, 0, 0, 0.3);
+    }
+    .alert {
+        font-size: 1.2rem;
+    }
+</style>
+{% endblock %}
